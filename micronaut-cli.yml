@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.ntlevinkerschberger
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [annotation-api, app-name, assertj, data, data-jpa, gradle, http-client, jackson-databind, java, java-application, jdbc-hikari, junit, logback, lombok, micronaut-build, netty-server, postgres, readme, shade, test-resources, testcontainers, yaml]
