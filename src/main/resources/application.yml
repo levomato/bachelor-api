@@ -3,12 +3,18 @@ micronaut:
     name: bachelorApi
 datasources:
   default:
+    url: jdbc:postgresql://localhost:5432/timedb
     driverClassName: org.postgresql.Driver
+    username: user
+    password: password
     db-type: postgres
-    schema-generate: CREATE_DROP
+    schema-generate: UPDATE
     dialect: POSTGRES
 netty:
   default:
     allocator:
       max-order: 3
 jpa.default.properties.hibernate.hbm2ddl.auto: update
+jackson:
+  date-format: "dd-MM-yyyy"
+
