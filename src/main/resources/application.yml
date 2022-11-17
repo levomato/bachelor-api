@@ -1,4 +1,15 @@
 micronaut:
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:mysecretisaverylongonewithatleasttwofivesixbits}"'
+        generator:
+          refresh-token:
+            secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:mysecretisaverylongonewithatleasttwofivesixbits}"'
   application:
     name: bachelorApi
 datasources:
@@ -8,7 +19,7 @@ datasources:
     username: user
     password: password
     db-type: postgres
-    schema-generate: UPDATE
+    schema-generate: CREATE_DROP
     dialect: POSTGRES
 netty:
   default:

@@ -10,6 +10,8 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
+import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.rules.SecurityRule;
 import io.micronaut.validation.Validated;
 import jakarta.inject.Inject;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +24,14 @@ import java.util.UUID;
 
 import static io.micronaut.http.HttpResponse.*;
 
+@Secured(SecurityRule.IS_AUTHENTICATED)
 @Controller("/posts")
 @RequiredArgsConstructor()
 @Validated
 public class PostController {
     @Inject
     private final PostRepository postRepository;
+    @Inject
     private final CommentRepository commentRepository;
 
     @Get(uri = "/", produces = MediaType.APPLICATION_JSON)

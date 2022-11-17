@@ -29,6 +29,7 @@ public class Post implements Serializable {
     @Builder.Default
     LocalDateTime createdAt = LocalDateTime.now();
 
+    @Builder.Default
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern ="yyyy-MM-dd'T'HH:mm")
     LocalDateTime updatedAt = LocalDateTime.now();
 
