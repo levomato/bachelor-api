@@ -10,7 +10,7 @@ import io.micronaut.security.rules.SecurityRule;
 import java.security.Principal;
 
 @Secured(SecurityRule.IS_AUTHENTICATED)
-@Controller("/")
+@Controller("/profile")
 public class HomeController {
 
     @Produces(MediaType.TEXT_PLAIN)

@@ -12,3 +12,17 @@ services:
     volumes:
       - ./data:/var/lib/postgresql
       - ./pg-initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      - database-network
+  backend:
+    image: bachelor-backend
+    depends_on:
+      - postgres
+    networks:
+      - database-network
+
+networks:
+  database-network:
+    driver: bridge
+    external: false
+

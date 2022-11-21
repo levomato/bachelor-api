@@ -4,6 +4,7 @@ import com.ntlevinkerschberger.models.Comment;
 import com.ntlevinkerschberger.models.Post;
 import com.ntlevinkerschberger.payloads.CreateCommentRequest;
 import com.ntlevinkerschberger.payloads.CreatePostRequest;
+import com.ntlevinkerschberger.payloads.UpdateTitleRequest;
 import com.ntlevinkerschberger.repositories.CommentRepository;
 import com.ntlevinkerschberger.repositories.PostRepository;
 import io.micronaut.http.HttpResponse;
@@ -15,6 +16,7 @@ import io.micronaut.security.rules.SecurityRule;
 import io.micronaut.validation.Validated;
 import jakarta.inject.Inject;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.sql.Update;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -57,7 +59,7 @@ public class PostController {
     }
 
     @Patch("/updateContent/{id}")
-    public HttpResponse<?> updatePostContent(@PathVariable UUID id, @Body String content) {
+    public HttpResponse<?> updatePostContent(@PathVariable UUID id, @Body @Valid String content) {
         Optional<Post> postItem = postRepository.findById(id);
         if (!postItem.isPresent()) {
             return badRequest();
@@ -72,14 +74,14 @@ public class PostController {
 
 
     @Patch("/updateTitle/{id}")
-    public HttpResponse<?> updatePostTitle(@PathVariable UUID id, @Body String title) {
+    public HttpResponse<?> updatePostTitle(@PathVariable UUID id, @Body @Valid UpdateTitleRequest updateTitleRequest) {
         Optional<Post> postItem = postRepository.findById(id);
         if (!postItem.isPresent()) {
             return badRequest();
         } else {
             Post post = postItem.get();
             post.setUpdatedAt(LocalDateTime.now());
-            post.setTitle(title);
+            post.setTitle(updateTitleRequest.getTitle());
             postRepository.update(post);
             return ok(post);
         }

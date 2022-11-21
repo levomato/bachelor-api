@@ -23,6 +23,7 @@ dependencies {
     implementation("io.micronaut.security:micronaut-security-jwt")
     implementation("io.micronaut.reactor:micronaut-reactor")
     implementation("io.micronaut.reactor:micronaut-reactor-http-client")
+    implementation("io.reactivex:rxjava:")
     implementation("jakarta.annotation:jakarta.annotation-api")
     implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
     compileOnly("org.projectlombok:lombok")
@@ -44,6 +45,10 @@ application {
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
     targetCompatibility = JavaVersion.toVersion("11")
+}
+
+dockerBuild {
+    images = [""]
 }
 
 graalvmNative.toolchainDetection = false

@@ -1,4 +1,9 @@
 micronaut:
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
   security:
     authentication: bearer
     token:
@@ -12,6 +17,9 @@ micronaut:
             secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:mysecretisaverylongonewithatleasttwofivesixbits}"'
   application:
     name: bachelorApi
+  server:
+    cors:
+      enabled: true
 datasources:
   default:
     url: jdbc:postgresql://localhost:5432/timedb
